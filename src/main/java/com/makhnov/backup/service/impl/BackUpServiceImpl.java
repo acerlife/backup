@@ -29,9 +29,9 @@ public class BackUpServiceImpl implements BackUpService {
                         });
         List<User> users = userResponse.getBody();
 
-        List<User> users1 = users.stream().filter(user -> !backUpDao.existsById(Long.valueOf(user.getId()))).collect(Collectors.toList());
+        //List<User> users1 = users.stream().filter(user -> !backUpDao.existsById(Long.valueOf(user.getId()))).collect(Collectors.toList());
         //System.out.println(users1);
-        //backUpDao.saveAll(users1);
+        backUpDao.saveAll(users);
         return backUpDao.findAll();
     }
 }

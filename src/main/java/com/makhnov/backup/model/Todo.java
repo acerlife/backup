@@ -20,6 +20,6 @@ public class Todo {
     private LocalDateTime dueDate;
     private boolean done;
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="user_id", referencedColumnName="id")
+    @JoinColumn(name="user_id", referencedColumnName="id", insertable=false, updatable = false)
     private User user;
 }
