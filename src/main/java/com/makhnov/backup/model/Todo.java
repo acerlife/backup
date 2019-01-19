@@ -2,6 +2,7 @@ package com.makhnov.backup.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -25,10 +26,10 @@ public class Todo {
     @ManyToOne
     @JoinColumn(name = "backup_id", insertable = false, updatable = false)
     @JsonIgnore
-    private BackUp backUp;
+    private Backup backup;
 
     @Column(name = "backup_id", updatable = false)
-    private long backUpId;
+    private long backupId;
 
     @Column(name = "user_id", updatable = false)
     private long userId;
