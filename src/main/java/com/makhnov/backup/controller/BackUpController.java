@@ -24,4 +24,9 @@ public class BackUpController {
     public ResponseEntity getBackUps(){
         return ResponseEntity.ok(backUpService.getBackups());
     }
+
+    @GetMapping("users")
+    public ResponseEntity getUsers(int id){
+        return ResponseEntity.ok(backUpService.getTodos(id));
+    }
 }

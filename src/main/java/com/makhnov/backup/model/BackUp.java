@@ -22,6 +22,6 @@ public class BackUp {
     private LocalDateTime date;
     private String status;
     @JsonIgnore
-    @OneToMany(cascade = {CascadeType.ALL})
-    private List<User> users;
+    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "backUp")
+    private List<Todo> todos;
 }
