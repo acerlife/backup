@@ -19,7 +19,4 @@ public class Todo {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime dueDate;
     private boolean done;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="user_id", referencedColumnName="id", insertable=false, updatable = false)
-    private User user;
 }

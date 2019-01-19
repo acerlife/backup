@@ -1,16 +1,27 @@
 package com.makhnov.backup.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
-@AllArgsConstructor
+@Setter
 @Getter
+@Entity
+@Table(name = "backup")
 public class BackUp {
-    private final int backupId;
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private long id;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private final LocalDateTime date;
-    private final boolean status;
+    private LocalDateTime date;
+    private String status;
+    @JsonIgnore
+    @OneToMany(cascade = {CascadeType.ALL})
+    private List<User> users;
 }

@@ -15,8 +15,13 @@ import org.springframework.web.client.RestTemplate;
 public class BackUpController {
     private final BackUpService backUpService;
 
-    @GetMapping
+    @GetMapping("save")
     public ResponseEntity save(){
         return ResponseEntity.ok(backUpService.save());
+    }
+
+    @GetMapping
+    public ResponseEntity getBackUps(){
+        return ResponseEntity.ok(backUpService.getBackups());
     }
 }
