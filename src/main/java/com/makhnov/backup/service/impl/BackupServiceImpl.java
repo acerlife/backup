@@ -7,6 +7,7 @@ import com.makhnov.backup.service.BackupService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @AllArgsConstructor
@@ -20,13 +21,22 @@ public class BackupServiceImpl implements BackupService {
     }
 
     @Override
-    public Long saveAndFlushBackup(Backup backup) {
-        return backupDao.saveAndFlush(backup).getId();
+    public Backup saveAndFlushBackup() {
+        Backup backup = createBackup();
+
+        return backupDao.saveAndFlush(backup);
     }
 
     @Override
     public void saveBackup(Backup backup) {
         backupDao.save(backup);
+    }
+
+    private Backup createBackup(){
+        Backup backup = new Backup();
+        backup.setDate(LocalDateTime.now());
+        backup.setStatus("In Progress");
+        return backup;
     }
 }
 

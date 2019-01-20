@@ -1,7 +1,7 @@
 package com.makhnov.backup.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -17,6 +17,7 @@ import java.util.List;
 public class Backup {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
+    @JsonProperty("backupId")
     private long id;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime date;

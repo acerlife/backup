@@ -11,14 +11,10 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
-import java.sql.SQLException;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.TimeUnit;
 
 
 @AllArgsConstructor
@@ -30,24 +26,18 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Async
-    public Long saveUser() throws InterruptedException {
+    public void saveUser(Backup backup) {
         List<User> users = getUsers();
-        Backup backup = createBackup();
-
-        long backUpId = backupService.saveAndFlushBackup(backup);
-        addBackupIdToUsers(users, backUpId);
+        addBackupIdToUsers(users, backup.getId());
 
         try {
-            TimeUnit.SECONDS.sleep(30);
             userDao.saveAll(users);
-            backup.setStatus("Ok");
+            backup.setStatus("OK");
             backupService.saveBackup(backup);
         }catch (Exception e){
-            backup.setStatus("Fail");
-            backupService.saveAndFlushBackup(backup);
+            backup.setStatus("Failed");
+            backupService.saveBackup(backup);
         }
-
-        return backUpId;
     }
 
     @Override
@@ -68,12 +58,5 @@ public class UserServiceImpl implements UserService {
             todo.setBackupId(backUpId);
             todo.setUserId(user.getId());
         }));
-    }
-
-    private Backup createBackup(){
-        Backup backup = new Backup();
-        backup.setDate(LocalDateTime.now());
-        backup.setStatus("In Progress");
-        return backup;
     }
 }

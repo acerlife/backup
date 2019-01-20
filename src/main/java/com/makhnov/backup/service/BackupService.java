@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface BackupService {
     List<Backup> getBackups();
-    Long saveAndFlushBackup(Backup backup);
+    Backup saveAndFlushBackup();
     void saveBackup(Backup backup);
 }
