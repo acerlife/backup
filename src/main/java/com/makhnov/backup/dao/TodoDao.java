@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface TodoDao extends JpaRepository<Todo, Long> {
-    List<Todo> findAllByBackup(Backup backup);
+    List<Todo> findAllByBackupId(long id);
 }

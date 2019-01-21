@@ -21,8 +21,8 @@ public class BackupController {
 
     @PostMapping
     public ResponseEntity save() throws InterruptedException, ExecutionException, TimeoutException {
-        Backup backup = backupService.saveAndFlushBackup();
-        userService.saveUser(backup);
+        Backup backup = backupService.saveBackup();
+        userService.backupUsers(backup);
         return ResponseEntity.ok(backup.getId());
     }
 

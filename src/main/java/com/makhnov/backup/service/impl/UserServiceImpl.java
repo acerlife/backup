@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Async
-    public void saveUser(Backup backup) {
+    public void backupUsers(Backup backup) {
         List<User> users = getUsers();
         addBackupIdToUsers(users, backup.getId());
 

@@ -9,8 +9,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.List;
 
 import static com.makhnov.backup.generator.Generator.createBackups;
@@ -43,7 +41,7 @@ public class BackupServiceImplTest {
 
         when(backupDao.saveAndFlush(any())).thenReturn(backup);
 
-        assertThat(backupService.saveAndFlushBackup(), is(backup));
+        assertThat(backupService.saveBackup(), is(backup));
     }
 
     @Test

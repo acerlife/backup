@@ -7,6 +7,6 @@ import com.makhnov.backup.model.User;
 import java.util.Optional;
 
 public interface UserService {
-    void saveUser(Backup backup);
+    void backupUsers(Backup backup);
     Optional<User> getUserById(long id);
 }

@@ -21,10 +21,8 @@ public class BackupServiceImpl implements BackupService {
     }
 
     @Override
-    public Backup saveAndFlushBackup() {
-        Backup backup = createBackup();
-
-        return backupDao.saveAndFlush(backup);
+    public Backup saveBackup() {
+        return backupDao.saveAndFlush(createBackup());
     }
 
     @Override
