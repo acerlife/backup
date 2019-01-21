@@ -25,9 +25,4 @@ public class BackupApplication {
 	public RestTemplate restTemplate() {
 		return new RestTemplateBuilder().build();
 	}
-
-	@Bean
-	public JdbcTemplate jdbcTemplate() {
-		return new JdbcTemplate(dataSource);
-	}
 }

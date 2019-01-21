@@ -13,6 +13,8 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.makhnov.backup.generator.Generator.createBackups;
+import static com.makhnov.backup.generator.Generator.createbackup;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -51,19 +53,5 @@ public class BackupServiceImplTest {
         backupService.saveBackup(backup);
 
         verify(backupDao).save(backup);
-    }
-
-    private List<Backup> createBackups(){
-        return Arrays.asList(createbackup(1, "OK"),
-                createbackup(2, "In progress"), createbackup(3, "Fail"));
-    }
-
-    private Backup createbackup(long id, String status){
-        Backup backup = new Backup();
-        backup.setId(id);
-        backup.setDate(LocalDateTime.now());
-        backup.setStatus(status);
-
-        return backup;
     }
 }
